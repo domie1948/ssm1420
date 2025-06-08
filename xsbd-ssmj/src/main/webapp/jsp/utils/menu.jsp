@@ -1,0 +1,349 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+var menus = [
+    {
+        "backMenu":[
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "新增",
+                            "修改",
+                            "删除"
+                        ],
+                        "menu":"管理员管理",
+                        "menuJump":"列表",
+                        "tableName":"users"
+                    }
+                ],
+                "menu":"管理员信息"
+            },
+
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "新增",
+                            "修改",
+                            "删除"
+                        ],
+                        "menu":"班级管理",
+                        "menuJump":"列表",
+                        "tableName":"Clazz"
+                    }
+                ],
+                "menu":"班级信息"
+            },
+
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "新增",
+                            "修改",
+                            "删除"
+                        ],
+                        "menu":"学院管理",
+                        "menuJump":"列表",
+                        "tableName":"college"
+                    }
+                ],
+                "menu":"学院信息"
+            },
+
+
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "新增",
+                            "修改",
+                            "删除"
+                        ],
+                        "menu":"专业管理",
+                        "menuJump":"列表",
+                        "tableName":"major"
+                    }
+                ],
+                "menu":"专业信息"
+            },
+
+            
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "新增",
+                            "修改",
+                            "删除"
+                        ],
+                        "menu":"消息通知",
+                        "menuJump":"列表",
+                        "tableName":"notice"
+                    }
+                ],
+                "menu":"消息通知"
+            },
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "新增",
+                            "修改",
+                            "删除"
+                        ],
+                        "menu":"宿舍管理",
+                        "menuJump":"列表",
+                        "tableName":"dormitory"
+                    }
+                ],
+                "menu":"宿舍信息"
+            },
+            
+            
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "新增",
+                            "修改",
+                            "报表",
+                            "删除"
+                        ],
+                        "menu":"缴费信息",
+                        "menuJump":"列表",
+                        "tableName":"pay"
+                    }
+                ],
+                "menu":"缴费信息"
+            },
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "新增",
+                            "修改",
+                            "报表",
+                            "删除"
+                        ],
+                        "menu":"学生管理",
+                        "menuJump":"列表",
+                        "tableName":"xuesheng"
+                    }
+                ],
+                "menu":"学生管理"
+            }
+        ],
+        "frontMenu":[
+
+        ],
+        "roleName":"学院管理员",
+        "tableName":"users"
+    },
+
+
+    {
+        "backMenu":[
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "新增",
+                            "修改",
+                            "删除"
+                        ],
+                        "menu":"宿舍管理",
+                        "menuJump":"列表",
+                        "tableName":"dormitory"
+                    }
+                ],
+                "menu":"宿舍信息"
+            },
+
+
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "新增",
+                            "修改",
+                            "删除"
+                        ],
+                        "menu":"消息通知",
+                        "menuJump":"列表",
+                        "tableName":"notice"
+                    }
+                ],
+                "menu":"消息通知"
+            },
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "报表"
+                        ],
+                        "menu":"学生管理",
+                        "menuJump":"列表",
+                        "tableName":"xuesheng"
+                    }
+                ],
+                "menu":"学生管理"
+            }
+        ],
+        "frontMenu":[
+
+        ],
+        "roleName":"宿舍管理员",
+        "tableName":"users"
+    },
+
+
+    {
+        "backMenu":[
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "新增",
+                            "修改",
+                            "报表",
+                            "删除"
+                        ],
+                        "menu":"缴费列表",
+                        "menuJump":"列表",
+                        "tableName":"pay"
+                    }
+                ],
+                "menu":"缴费信息"
+            },
+
+
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "新增",
+                            "修改",
+                            "删除"
+                        ],
+                        "menu":"消息通知",
+                        "menuJump":"列表",
+                        "tableName":"notice"
+                    }
+                ],
+                "menu":"消息通知"
+            },
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "报表"
+                        ],
+                        "menu":"学生管理",
+                        "menuJump":"列表",
+                        "tableName":"xuesheng"
+                    }
+                ],
+                "menu":"学生管理"
+            }
+        ],
+        "frontMenu":[
+
+        ],
+        "roleName":"财务管理员",
+        "tableName":"users"
+    },
+
+
+    {
+        "backMenu":[
+        {
+            "child":[
+                {
+                    "buttons":[
+                    ],
+                    "menu":"班级管理",
+                    "menuJump":"列表",
+                    "tableName":"Clazz"
+                }
+            ],
+            "menu":"班级信息"
+        },
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "新增",
+                            "修改",
+                            "删除"
+                        ],
+                        "menu":"消息通知",
+                        "menuJump":"列表",
+                        "tableName":"notice"
+                    }
+                ],
+                "menu":"消息通知"
+            },
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "报表"
+                        ],
+                        "menu":"学生管理",
+                        "menuJump":"列表",
+                        "tableName":"xuesheng"
+                    }
+                ],
+                "menu":"学生管理"
+            }
+        ],
+        "frontMenu":[
+
+        ],
+        "roleName":"辅导员",
+        "tableName":"users"
+    },
+
+
+    {
+        "backMenu":[
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "修改"
+                            ],
+                        "menu":"缴费列表",
+                        "menuJump":"列表",
+                        "tableName":"pay"
+                    }
+                ],
+                "menu":"缴费信息"
+            },
+            {
+                "child":[
+                    {
+                        "buttons":[
+                        ],
+                        "menu":"消息通知",
+                        "menuJump":"列表",
+                        "tableName":"notice"
+                    }
+                ],
+                "menu":"消息通知"
+            }
+        ],
+        "frontMenu":[
+
+        ],
+        "roleName":"学生",
+        "tableName":"xuesheng"
+    },
+
+
+
+
+];
+
+var hasMessage = '';

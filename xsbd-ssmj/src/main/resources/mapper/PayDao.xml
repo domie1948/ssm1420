@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.PayDao">
+
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        a.id as id
+        ,a.xuesheng_id as xueshengId
+        ,a.money as money
+        ,a.pay_flag as payFlag
+        ,a.money_time as moneyTime
+        ,a.create_time as createTime
+    </sql>
+
+    <select id="selectListView" parameterType="map" resultType="com.entity.view.PayView" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM Pay  a
+        <where>
+            <if test=" params.xueshengId != '' and params.xueshengId != null and params.xueshengId != 'null' ">
+                and a.xuesheng_id = #{params.xueshengId}
+            </if>
+            <if test=" params.moneyStart != '' and params.moneyStart != null and params.moneyStart != 'null' ">
+                and a.money &gt;= #{params.moneyStart}
+            </if>
+            <if test=" params.moneyEnd != '' and params.moneyEnd != null and params.moneyEnd != 'null' ">
+                and a.money &lt;= #{params.moneyEnd}
+            </if>
+            <if test=" params.payFlag != '' and params.payFlag != null and params.payFlag != 'null' ">
+                and a.pay_flag = #{params.payFlag}
+            </if>
+            <if test=" params.moneyTimeStart != '' and params.moneyTimeStart != null and params.moneyTimeStart != 'null' ">
+                and a.money_time = #{params.moneyTimeStart}
+                <![CDATA[  and DATE_FORMAT(a.money_time, '%Y-%m-%d %H:%T:%s') &gt;=
+                DATE_FORMAT(#{params.moneyTimeStart}, '%Y-%m-%d %H:%T:%s')   ]]>
+            </if>
+            <if test=" params.moneyTimeEnd != '' and params.moneyTimeEnd != null and params.moneyTimeEnd != 'null' ">
+                and a.money_time = #{params.moneyTimeEnd}
+                <![CDATA[  and DATE_FORMAT(a.money_time, '%Y-%m-%d %H:%T:%s') &lt;=
+                DATE_FORMAT(#{params.moneyTimeEnd} , '%Y-%m-%d %H:%T:%s')    ]]>
+            </if>
+        </where>
+        order by a.id desc
+    </select>
+
+</mapper>

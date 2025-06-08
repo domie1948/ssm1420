@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.NoticeDao">
+
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        a.id as id
+        ,a.users_id as usersId
+        ,a.notice_types as noticeTypes
+        ,a.notice_content as noticeContent
+        ,a.notice_time as noticeTime
+        ,a.create_time as createTime
+    </sql>
+
+    <select id="selectListView" parameterType="map" resultType="com.entity.view.NoticeView" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM Notice  a
+        <where>
+            <if test=" params.usersId != '' and params.usersId != null and params.usersId != 'null' ">
+                and a.users_id = #{params.usersId}
+            </if>
+            <if test=" params.noticeTypes != '' and params.noticeTypes != null and params.noticeTypes != 'null' ">
+                and a.notice_types = #{params.noticeTypes}
+            </if>
+            <if test=" params.noticeContent != '' and params.noticeContent != null and params.noticeContent != 'null' ">
+                and a.notice_content like CONCAT('%',#{params.noticeContent},'%')
+            </if>
+            <if test=" params.noticeTimeStart != '' and params.noticeTimeStart != null and params.noticeTimeStart != 'null' ">
+                and a.notice_time = #{params.noticeTimeStart}
+                <![CDATA[  and DATE_FORMAT(a.notice_time, '%Y-%m-%d %H:%T:%s') &gt;=
+                DATE_FORMAT(#{params.noticeTimeStart}, '%Y-%m-%d %H:%T:%s')   ]]>
+            </if>
+            <if test=" params.noticeTimeEnd != '' and params.noticeTimeEnd != null and params.noticeTimeEnd != 'null' ">
+                and a.notice_time = #{params.noticeTimeEnd}
+                <![CDATA[  and DATE_FORMAT(a.notice_time, '%Y-%m-%d %H:%T:%s') &lt;=
+                DATE_FORMAT(#{params.noticeTimeEnd} , '%Y-%m-%d %H:%T:%s')    ]]>
+            </if>
+        </where>
+        order by a.id desc
+    </select>
+
+</mapper>

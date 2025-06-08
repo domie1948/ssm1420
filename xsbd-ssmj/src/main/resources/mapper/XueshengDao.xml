@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.XueshengDao">
+
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        a.id as id
+        ,a.account as account
+        ,a.mima as mima
+        ,a.xingming as xingming
+        ,a.notification_code as notificationCode
+        ,a.sex_types as sexTypes
+        ,a.age as age
+        ,a.phone as phone
+        ,a.email as email
+        ,a.portrait_photo as portraitPhoto
+        ,a.report_types as reportTypes
+        ,a.college_types as collegeTypes
+        ,a.major_types as majorTypes
+        ,a.clazz_types as clazzTypes
+        ,a.create_time as createTime
+    </sql>
+
+    <select id="selectListView" parameterType="map" resultType="com.entity.view.XueshengView" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM Xuesheng  a
+        <where>
+            <if test=" params.account != '' and params.account != null and params.account != 'null' ">
+                and a.account like CONCAT('%',#{params.account},'%')
+            </if>
+            <if test=" params.mima != '' and params.mima != null and params.mima != 'null' ">
+                and a.mima like CONCAT('%',#{params.mima},'%')
+            </if>
+            <if test=" params.xingming != '' and params.xingming != null and params.xingming != 'null' ">
+                and a.xingming like CONCAT('%',#{params.xingming},'%')
+            </if>
+            <if test=" params.notificationCode != '' and params.notificationCode != null and params.notificationCode != 'null' ">
+                and a.notification_code like CONCAT('%',#{params.notificationCode},'%')
+            </if>
+            <if test=" params.sexTypes != '' and params.sexTypes != null and params.sexTypes != 'null' ">
+                and a.sex_types = #{params.sexTypes}
+            </if>
+            <if test=" params.age != '' and params.age != null and params.age != 'null' ">
+                and a.age = #{params.age}
+            </if>
+            <if test=" params.phone != '' and params.phone != null and params.phone != 'null' ">
+                and a.phone like CONCAT('%',#{params.phone},'%')
+            </if>
+            <if test=" params.email != '' and params.email != null and params.email != 'null' ">
+                and a.email like CONCAT('%',#{params.email},'%')
+            </if>
+            <if test=" params.reportTypes != '' and params.reportTypes != null and params.reportTypes != 'null' ">
+                and a.report_types = #{params.reportTypes}
+            </if>
+            <if test=" params.collegeTypes != '' and params.collegeTypes != null and params.collegeTypes != 'null' ">
+                and a.college_types = #{params.collegeTypes}
+            </if>
+            <if test=" params.majorTypes != '' and params.majorTypes != null and params.majorTypes != 'null' ">
+                and a.major_types = #{params.majorTypes}
+            </if>
+            <if test=" params.clazzTypes != '' and params.clazzTypes != null and params.clazzTypes != 'null' ">
+                and a.clazz_types = #{params.clazzTypes}
+            </if>
+        </where>
+        order by a.id desc
+    </select>
+
+</mapper>

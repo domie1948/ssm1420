@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.DormitoryXueshengDao">
+
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        a.id as id
+        ,a.xuesheng_id as xueshengId
+        ,a.dormitory_id as dormitoryId
+        ,a.create_time as createTime
+    </sql>
+
+    <select id="selectListView" parameterType="map" resultType="com.entity.view.DormitoryXueshengView" >
+        SELECT
+        <include refid="Base_Column_List" />
+        ,x.id as  xid
+        ,x.xingming as xingming
+        ,x.notification_code as notificationCode
+        FROM dormitory_xuesheng  a
+        left join xuesheng  x on x.id=a.xuesheng_id
+        <where>
+            <if test=" params.xueshengId != '' and params.xueshengId != null and params.xueshengId != 'null' ">
+                and a.xuesheng_id = #{params.xueshengId}
+            </if>
+            <if test=" params.dormitoryId != '' and params.dormitoryId != null and params.dormitoryId != 'null' ">
+                and a.dormitory_id = #{params.dormitoryId}
+            </if>
+        </where>
+        order by a.id desc
+    </select>
+
+</mapper>
